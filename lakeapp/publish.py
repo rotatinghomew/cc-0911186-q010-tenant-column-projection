@@ -7,7 +7,7 @@ def publish(connection, name: str, version: int, rows: list[dict]) -> None:
     payload = {"rows": rows, "row_count": len(rows)}
     with transaction(connection):
         connection.execute(
-            "INSERT INTO manifests(name,version,payload,status) VALUES(?,?,?,?,?)",
+            "INSERT INTO manifests(name,version,payload,status) VALUES(?,?,?,?)",
             (name, version, encode(payload), "ready"),
         )
 
